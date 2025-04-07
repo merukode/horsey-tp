@@ -12,7 +12,6 @@
     "framer-motion": "^12.6.3",
     "next": "15.2.4",
     "react": "^19.0.0",
-    "react-animated-cursor": "^2.11.2",
     "react-dom": "^19.0.0",
     "react-h5-audio-player": "^3.10.0-rc.1"
   },
