@@ -1,143 +1,162 @@
 'use client';
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-
-// Sample photography data - replace with your actual photos
-const photos = [
-  { id: 1, src: '/photos/photo1.jpg', title: 'Mountain Landscape', category: 'Nature' },
-  { id: 2, src: '/photos/photo2.jpg', title: 'Urban Street', category: 'Urban' },
-  { id: 3, src: '/photos/photo3.jpg', title: 'Portrait', category: 'Portrait' },
-  { id: 4, src: '/photos/photo4.jpg', title: 'Architecture', category: 'Architecture' },
-  { id: 5, src: '/photos/photo5.jpg', title: 'Wildlife', category: 'Nature' },
-  { id: 6, src: '/photos/photo6.jpg', title: 'Abstract', category: 'Abstract' },
-  { id: 7, src: '/photos/photo7.jpg', title: 'Street Photography', category: 'Urban' },
-  { id: 8, src: '/photos/photo8.jpg', title: 'Macro', category: 'Nature' },
-  { id: 9, src: '/photos/photo9.jpg', title: 'Cityscape', category: 'Urban' },
-  { id: 10, src: '/photos/photo10.jpg', title: 'People', category: 'Portrait' },
-  { id: 11, src: '/photos/photo11.jpg', title: 'Building', category: 'Architecture' },
-  { id: 12, src: '/photos/photo12.jpg', title: 'Pattern', category: 'Abstract' },
-];
-
-// Get unique categories
-const categories = ['All', ...new Set(photos.map(photo => photo.category))];
+import React from 'react';
+import { motion } from 'framer-motion';
 
 export default function Photography() {
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
-
-  // Filter photos based on selected category
-  const filteredPhotos = selectedCategory === 'All' 
-    ? photos 
-    : photos.filter(photo => photo.category === selectedCategory);
-
   return (
-    <div className="min-h-screen py-20 px-4">
-      <motion.div 
-        className="max-w-7xl mx-auto"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <h1 className="text-4xl sm:text-5xl font-bold mb-8 text-center glitch-text retro-title">
-          PHOTOGRAPHY
-        </h1>
-        
-        <p className="text-center text-[var(--retro-gray)] max-w-2xl mx-auto mb-12">
-          A collection of my photography work, capturing moments and perspectives that inspire me.
-        </p>
+    <div className="min-h-screen pt-20">
+      <section className="py-12 sm:py-20 px-4 relative">
+        <motion.div 
+          className="max-w-7xl mx-auto relative z-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="absolute top-0 right-0 text-[200px] font-bold opacity-5 -rotate-12 select-none pointer-events-none">
+            PHOTO
+          </div>
 
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
-          {categories.map((category) => (
-            <motion.button
-              key={category}
-              className={`px-4 py-2 text-sm font-medium transition-all duration-200 retro-text
-                ${selectedCategory === category
-                  ? 'bg-[var(--accent)] text-[var(--foreground)] brutalism-box'
-                  : 'bg-[var(--retro-bg)] text-[var(--retro-gray)] hover:text-[var(--accent)]'
-                }`}
-              onClick={() => setSelectedCategory(category)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {category}
-            </motion.button>
-          ))}
-        </div>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-16 sm:mb-24 text-left glitch-text retro-title relative">
+            <span className="absolute -top-6 left-0 text-sm font-mono text-[var(--accent)]">[PHOTOGRAPHY]</span>
+            VISUAL STORIES
+            <div className="absolute -bottom-2 left-0 w-1/3 h-1 bg-[var(--accent)]"></div>
+          </h2>
 
-        {/* Masonry Grid */}
-        <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4">
-          {filteredPhotos.map((photo, index) => (
-            <motion.div
-              key={photo.id}
-              className="mb-4 break-inside-avoid overflow-hidden brutalism-box"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ scale: 1.02 }}
-              onClick={() => setSelectedPhoto(photo.id)}
-            >
-              <div className="relative group cursor-pointer">
-                <div className="aspect-[3/4] bg-[var(--retro-bg)] overflow-hidden">
-                  {/* Replace with actual image when available */}
-                  <div className="w-full h-full bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent2)]/20 flex items-center justify-center">
-                    <span className="text-[var(--retro-gray)] text-sm">{photo.title}</span>
-                  </div>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="absolute bottom-0 left-0 p-4">
-                    <h3 className="text-lg font-bold retro-text">{photo.title}</h3>
-                    <p className="text-sm text-[var(--retro-gray)]">{photo.category}</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Photo Modal */}
-      <AnimatePresence>
-        {selectedPhoto && (
-          <motion.div
-            className="fixed inset-0 bg-[var(--background)]/90 z-50 flex items-center justify-center p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedPhoto(null)}
-          >
-            <motion.div
-              className="relative max-w-4xl w-full bg-[var(--retro-bg)] p-4 brutalism-box"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-            >
+          {/* Categories */}
+          <div className="mb-12 flex flex-wrap gap-4">
+            {['ALL', 'STREET', 'PORTRAIT', 'LANDSCAPE', 'ABSTRACT'].map((category) => (
               <button
-                className="absolute top-2 right-2 text-[var(--foreground)] text-2xl"
-                onClick={() => setSelectedPhoto(null)}
+                key={category}
+                className="px-4 py-2 font-mono text-xs border-2 border-[var(--foreground)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
               >
-                ×
+                {category}
               </button>
-              <div className="aspect-[4/3] bg-[var(--retro-bg-alt)] flex items-center justify-center">
-                {/* Replace with actual image when available */}
-                <span className="text-[var(--retro-gray)]">
-                  {photos.find(p => p.id === selectedPhoto)?.title}
-                </span>
-              </div>
-              <div className="mt-4">
-                <h3 className="text-xl font-bold retro-text">
-                  {photos.find(p => p.id === selectedPhoto)?.title}
-                </h3>
-                <p className="text-[var(--retro-gray)]">
-                  {photos.find(p => p.id === selectedPhoto)?.category}
-                </p>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            ))}
+          </div>
+
+          {/* Photo Grid */}
+          <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[var(--foreground)]">
+            {[
+              {
+                title: 'URBAN_GEOMETRY_01',
+                category: 'STREET',
+                location: 'TOKYO, JP',
+                year: '2024',
+                camera: 'FUJIFILM X-T4'
+              },
+              {
+                title: 'PORTRAIT_SERIES_05',
+                category: 'PORTRAIT',
+                location: 'NYC, USA',
+                year: '2023',
+                camera: 'SONY A7III'
+              },
+              {
+                title: 'MOUNTAIN_VISTA_12',
+                category: 'LANDSCAPE',
+                location: 'ALPS, CH',
+                year: '2023',
+                camera: 'CANON R5'
+              },
+              {
+                title: 'STREET_LIFE_08',
+                category: 'STREET',
+                location: 'LONDON, UK',
+                year: '2023',
+                camera: 'LEICA Q2'
+              },
+              {
+                title: 'ABSTRACT_FORMS_03',
+                category: 'ABSTRACT',
+                location: 'BERLIN, DE',
+                year: '2023',
+                camera: 'FUJIFILM X-T4'
+              },
+              {
+                title: 'CITYSCAPE_15',
+                category: 'LANDSCAPE',
+                location: 'HK, CN',
+                year: '2022',
+                camera: 'SONY A7III'
+              }
+            ].map((photo, index) => (
+              <motion.div
+                key={photo.title}
+                className="group relative bg-[var(--background)]"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="relative aspect-square overflow-hidden">
+                  {/* Placeholder for photo - replace with actual image */}
+                  <div className="absolute inset-0 bg-[var(--retro-bg)] group-hover:scale-105 transition-transform duration-500">
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--background)]/80"></div>
+                  </div>
+
+                  {/* Photo info */}
+                  <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                    <div className="space-y-2">
+                      <div className="font-mono text-xs text-[var(--accent)]">{photo.category}</div>
+                      <h3 className="text-xl sm:text-2xl font-bold tracking-tighter">
+                        {photo.title}
+                      </h3>
+                      <div className="flex justify-between items-center font-mono text-xs text-[var(--retro-gray)]">
+                        <span>{photo.location}</span>
+                        <span>{photo.year}</span>
+                      </div>
+                      <div className="font-mono text-xs text-[var(--retro-gray)]">{photo.camera}</div>
+                    </div>
+                  </div>
+
+                  {/* Hover effect */}
+                  <div className="absolute inset-0 border-2 border-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                  {/* Brutalist accent */}
+                  <div className="absolute top-0 left-0 w-2 h-2 bg-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute bottom-0 right-0 w-2 h-2 bg-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Brutalist footer */}
+          <div className="mt-8 flex items-center justify-between text-xs font-mono text-[var(--retro-gray)]">
+            <div>TOTAL_PHOTOS: 06</div>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-[var(--accent)]"></div>
+              <div>STATUS: CURATED</div>
+            </div>
+          </div>
+
+          {/* Equipment Section */}
+          <div className="mt-20">
+            <h3 className="text-xl font-bold mb-8 text-left relative">
+              <span className="absolute -top-4 left-0 text-sm font-mono text-[var(--accent)]">[GEAR]</span>
+              EQUIPMENT
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[var(--foreground)]">
+              {[
+                { type: 'CAMERA', items: ['FUJIFILM X-T4', 'SONY A7III', 'LEICA Q2'] },
+                { type: 'LENSES', items: ['35MM F/1.4', '50MM F/1.2', '85MM F/1.8'] },
+                { type: 'LIGHTING', items: ['GODOX V1', 'APUTURE 120D', 'NANLITE FORZA'] },
+                { type: 'ACCESSORIES', items: ['TRIPOD', 'FILTERS', 'FLASH TRIGGERS'] }
+              ].map((category) => (
+                <div key={category.type} className="bg-[var(--background)] p-6">
+                  <div className="font-mono text-xs text-[var(--accent)] mb-4">{category.type}</div>
+                  <ul className="space-y-2">
+                    {category.items.map((item) => (
+                      <li key={item} className="font-mono text-xs">{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </section>
     </div>
   );
 } 

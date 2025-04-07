@@ -2,139 +2,112 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 
 export default function About() {
   return (
-    <div className="min-h-screen py-20 px-4">
-      <motion.div 
-        className="max-w-7xl mx-auto"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <h1 className="text-4xl sm:text-5xl font-bold mb-8 text-center glitch-text retro-title">
-          ABOUT ME
-        </h1>
-
-        {/* Who Am I Section */}
-        <section className="mb-20 relative">
-          <div className="relative bg-[var(--retro-bg)] p-6 sm:p-8 brutalism-box">
-            <div className="absolute inset-0 bg-[url('/noise.png')] opacity-5"></div>
-            <div className="absolute inset-0 grid grid-cols-8 grid-rows-8 opacity-10">
-              {Array.from({ length: 64 }).map((_, i) => (
-                <div key={i} className="border border-[var(--retro-gray)]/10"></div>
-              ))}
-            </div>
-            <div className="relative z-10">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-4 glitch-text retro-title">WHO AM I?</h2>
-              <p className="text-[var(--retro-gray)] mb-4">
-                I'm a passionate software engineer with a keen eye for design and a love for creating elegant solutions to complex problems. With a background in computer science and years of experience in web development, I specialize in building responsive, user-friendly applications that make a difference.
-              </p>
-              <p className="text-[var(--retro-gray)]">
-                When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing my knowledge through technical writing and mentoring.
-              </p>
-            </div>
+    <div className="min-h-screen pt-20">
+      <section className="py-12 sm:py-20 px-4 relative">
+        <motion.div 
+          className="max-w-7xl mx-auto relative z-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="absolute top-0 right-0 text-[200px] font-bold opacity-5 -rotate-12 select-none pointer-events-none">
+            ABOUT
           </div>
-        </section>
 
-        {/* My Journey Section */}
-        <section className="mb-20 relative">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center glitch-text retro-title">MY JOURNEY</h2>
-          <div className="relative">
-            <div className="absolute left-0 top-0 bottom-0 w-1 bg-[var(--accent)]"></div>
-            <div className="space-y-8 pl-6">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-16 sm:mb-24 text-left glitch-text retro-title relative">
+            <span className="absolute -top-6 left-0 text-sm font-mono text-[var(--accent)]">[WHO_AM_I]</span>
+            ABOUT ME
+            <div className="absolute -bottom-2 left-0 w-1/3 h-1 bg-[var(--accent)]"></div>
+          </h2>
+
+          {/* Bio Section */}
+          <div className="relative grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--foreground)]">
+            {/* Main Bio */}
+            <motion.div
+              className="relative bg-[var(--background)] p-6 sm:p-8"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="font-mono text-xs text-[var(--accent)] mb-4">BIOGRAPHY</div>
+              <div className="space-y-4 font-mono text-sm">
+                <p>SOFTWARE ENGINEER WITH A PASSION FOR BUILDING DIGITAL EXPERIENCES.</p>
+                <p>FOCUSED ON CREATING INTUITIVE AND PERFORMANT APPLICATIONS THAT SOLVE REAL-WORLD PROBLEMS.</p>
+                <p>CONSTANTLY EXPLORING NEW TECHNOLOGIES AND METHODOLOGIES TO PUSH THE BOUNDARIES OF WHAT'S POSSIBLE.</p>
+              </div>
+            </motion.div>
+
+            {/* Stats/Details */}
+            <motion.div
+              className="relative bg-[var(--background)] p-6 sm:p-8"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+            >
+              <div className="font-mono text-xs text-[var(--accent)] mb-4">QUICK_STATS</div>
+              <div className="space-y-4">
+                {[
+                  { label: 'LOCATION', value: 'EARTH.ASIA.ID' },
+                  { label: 'EXPERIENCE', value: '5+ YEARS' },
+                  { label: 'AVAILABILITY', value: 'OPEN TO OPPORTUNITIES' },
+                  { label: 'INTERESTS', value: 'AI, WEB3, PHOTOGRAPHY' }
+                ].map((stat, index) => (
+                  <div key={stat.label} className="flex justify-between items-center border-b border-[var(--foreground)]/20 pb-2">
+                    <span className="font-mono text-xs text-[var(--retro-gray)]">{stat.label}</span>
+                    <span className="font-mono text-sm">{stat.value}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Timeline Section */}
+          <div className="mt-12">
+            <div className="font-mono text-xs text-[var(--accent)] mb-6">TIMELINE</div>
+            <div className="relative grid grid-cols-1 gap-px bg-[var(--foreground)]">
               {[
-                { year: '2018', title: 'Started Learning Programming', description: 'Began my journey into the world of coding with HTML, CSS, and JavaScript.' },
-                { year: '2020', title: 'First Professional Role', description: 'Joined a startup as a junior developer, working on full-stack web applications.' },
-                { year: '2022', title: 'Specialized in Frontend', description: 'Focused on mastering React, TypeScript, and modern frontend technologies.' },
-                { year: '2023', title: 'Freelance Developer', description: 'Started taking on freelance projects to expand my portfolio and skills.' },
-                { year: '2024', title: 'Current Focus', description: 'Exploring AI integration in web applications and building more complex systems.' }
-              ].map((item, index) => (
-                <motion.div 
-                  key={index}
-                  className="relative pl-6"
+                { year: '2023', title: 'SENIOR SOFTWARE ENGINEER', company: 'TECH CORP' },
+                { year: '2021', title: 'FULL STACK DEVELOPER', company: 'STARTUP INC' },
+                { year: '2019', title: 'FRONTEND DEVELOPER', company: 'DIGITAL AGENCY' },
+                { year: '2018', title: 'GRADUATED', company: 'COMPUTER SCIENCE' }
+              ].map((event, index) => (
+                <motion.div
+                  key={event.year}
+                  className="group relative bg-[var(--background)]"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ delay: index * 0.1 }}
                 >
-                  <div className="absolute left-0 top-2 w-4 h-4 rounded-full bg-[var(--accent)] transform -translate-x-1/2"></div>
-                  <div className="bg-[var(--retro-bg)] p-4 brutalism-box hover:translate-x-2 transition-transform">
-                    <div className="text-sm text-[var(--accent)] font-bold">{item.year}</div>
-                    <h3 className="text-xl font-bold retro-text">{item.title}</h3>
-                    <p className="text-[var(--retro-gray)]">{item.description}</p>
+                  <div className="relative p-6 sm:p-8 flex items-center">
+                    <div className="w-20 font-mono text-sm text-[var(--accent)]">{event.year}</div>
+                    <div>
+                      <h3 className="text-lg font-bold">{event.title}</h3>
+                      <p className="font-mono text-xs text-[var(--retro-gray)]">{event.company}</p>
+                    </div>
+                    {/* Brutalist accent */}
+                    <div className="absolute top-0 left-0 w-2 h-2 bg-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
                 </motion.div>
               ))}
             </div>
           </div>
-        </section>
 
-        {/* Philosophy Section */}
-        <section className="mb-20 relative">
-          <div className="relative bg-[var(--retro-bg)] p-6 sm:p-8 brutalism-box">
-            <div className="absolute inset-0 bg-[url('/noise.png')] opacity-5"></div>
-            <div className="relative z-10">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-4 glitch-text retro-title">PHILOSOPHY</h2>
-              <p className="text-[var(--retro-gray)] mb-4">
-                I believe in writing clean, maintainable code that not only solves problems but also provides a delightful experience for users. My approach combines technical expertise with creative problem-solving to build solutions that are both functional and beautiful.
-              </p>
-              <p className="text-[var(--retro-gray)]">
-                I'm constantly learning and adapting to new technologies and methodologies, as I believe that growth is essential in the ever-evolving field of software development.
-              </p>
+          {/* Brutalist footer */}
+          <div className="mt-8 flex items-center justify-between text-xs font-mono text-[var(--retro-gray)]">
+            <div>LAST_UPDATED: 2024</div>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-[var(--accent)]"></div>
+              <div>STATUS: ONLINE</div>
             </div>
           </div>
-        </section>
-
-        {/* Skills Section */}
-        <section className="relative">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center glitch-text retro-title">SKILLS</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-            {[
-              'JavaScript', 'TypeScript', 'React', 'Next.js', 
-              'Node.js', 'Python', 'SQL', 'Git',
-              'UI/UX Design', 'Responsive Design', 'API Development', 'Testing'
-            ].map((skill, index) => (
-              <motion.div
-                key={skill}
-                className="p-4 bg-[var(--retro-bg)] border-4 border-[var(--foreground)] text-center hover:border-[var(--accent)] transition-all duration-300 transform hover:scale-105 relative group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-              >
-                <h3 className="text-base sm:text-lg font-bold relative z-10 retro-text">{skill}</h3>
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-[var(--accent)] transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        {/* Photography Link */}
-        <motion.div 
-          className="mt-12 text-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-        >
-          <p className="text-[var(--retro-gray)] mb-4">
-            Besides coding, I'm also passionate about photography. Check out my photography portfolio!
-          </p>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Link 
-              href="/photography" 
-              className="inline-block px-6 py-3 bg-[var(--accent)] text-[var(--foreground)] font-bold brutalism-button"
-            >
-              VIEW PHOTOGRAPHY
-            </Link>
-          </motion.div>
         </motion.div>
-      </motion.div>
+      </section>
     </div>
   );
 } 

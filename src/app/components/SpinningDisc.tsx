@@ -55,7 +55,7 @@ export default function SpinningDisc() {
   };
 
   return (
-    <div className="fixed bottom-8 right-8 z-50">
+    <div className="fixed top-25 left-8 z-50">
       <motion.div
         ref={discRef}
         className="relative w-16 h-16 cursor-pointer"
@@ -65,13 +65,17 @@ export default function SpinningDisc() {
         animate={controls}
       >
         {/* Vinyl Record */}
-        <div className="absolute inset-0 rounded-full bg-[var(--retro-bg)] border-4 border-[var(--foreground)] overflow-hidden">
-          <div className="absolute inset-0 bg-[url('/noise.png')] opacity-5"></div>
-          {/* Record Grooves */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,transparent_30%,rgba(255,255,255,0.1)_30%,rgba(255,255,255,0.1)_31%,transparent_31%,transparent_40%,rgba(255,255,255,0.1)_40%,rgba(255,255,255,0.1)_41%,transparent_41%)]"></div>
+        <div className="absolute inset-0 rounded-full bg-[var(--retro-bg)] border-2 border-[var(--accent)] overflow-hidden">
+          {/* Simple record grooves */}
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 rounded-full border-[1px] border-[var(--accent)] opacity-30"></div>
+            <div className="absolute inset-[15%] rounded-full border-[1px] border-[var(--accent)] opacity-30"></div>
+            <div className="absolute inset-[30%] rounded-full border-[1px] border-[var(--accent)] opacity-30"></div>
+          </div>
+          
           {/* Center Label */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-6 h-6 rounded-full bg-[var(--accent)] border-2 border-[var(--foreground)]"></div>
+            <div className="w-6 h-6 rounded-full bg-[var(--accent)] border border-[var(--foreground)]"></div>
           </div>
         </div>
 
@@ -84,16 +88,6 @@ export default function SpinningDisc() {
         >
           {isPlaying ? '⏸' : '▶'}
         </motion.div>
-
-        {/* Glow Effect */}
-        <motion.div
-          className="absolute inset-0 rounded-full"
-          initial={{ boxShadow: '0 0 0 0 rgba(255,62,0,0.5)' }}
-          animate={{
-            boxShadow: isPlaying ? '0 0 20px 5px rgba(255,62,0,0.5)' : '0 0 0 0 rgba(255,62,0,0.5)'
-          }}
-          transition={{ duration: 0.3 }}
-        />
       </motion.div>
 
       {/* Music Player Card */}

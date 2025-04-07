@@ -435,3 +435,16 @@ body {
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(74, 55, 40, 0.15);
 }
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}

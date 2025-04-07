@@ -29,7 +29,7 @@ const MusicPlayerCard: React.FC<MusicPlayerCardProps> = ({ isVisible }) => {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 20 }}
           transition={{ duration: 0.3 }}
-          className="fixed bottom-24 right-8 w-64 bg-[var(--royal-cream)] border-2 border-[var(--royal-gold)] rounded-lg shadow-lg p-4 z-50"
+          className="fixed top-24 left-25 w-64 bg-[var(--royal-cream)] border-2 border-[var(--royal-gold)] rounded-lg shadow-lg p-4 z-50"
         >
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-[var(--royal-purple)] font-semibold">Now Playing</h3>
