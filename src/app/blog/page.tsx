@@ -50,7 +50,7 @@ export default function Blog() {
                   THE FUTURE OF WEB DEVELOPMENT: AI AND AUTOMATION
                 </h3>
                 <p className="text-sm text-[var(--retro-gray)] font-mono leading-relaxed mb-6 max-w-2xl">
-                  EXPLORING THE INTERSECTION OF ARTIFICIAL INTELLIGENCE AND WEB DEVELOPMENT, AND HOW IT'S RESHAPING THE INDUSTRY.
+                  EXPLORING THE INTERSECTION OF ARTIFICIAL INTELLIGENCE AND WEB DEVELOPMENT, AND HOW IT&apos;S RESHAPING THE INDUSTRY.
                 </p>
                 <div className="flex items-center justify-between font-mono text-xs">
                   <span className="text-[var(--retro-gray)]">2024-03-15</span>

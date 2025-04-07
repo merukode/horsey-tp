@@ -56,7 +56,7 @@ export default function About() {
                   { label: 'EXPERIENCE', value: '5+ YEARS' },
                   { label: 'AVAILABILITY', value: 'OPEN TO OPPORTUNITIES' },
                   { label: 'INTERESTS', value: 'AI, WEB3, PHOTOGRAPHY' }
-                ].map((stat, index) => (
+                ].map((stat) => (
                   <div key={stat.label} className="flex justify-between items-center border-b border-[var(--foreground)]/20 pb-2">
                     <span className="font-mono text-xs text-[var(--retro-gray)]">{stat.label}</span>
                     <span className="font-mono text-sm">{stat.value}</span>

@@ -1,15 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 export default function Photography() {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
-
   return (
     <div className="min-h-screen pt-20">
       <section className="py-12 sm:py-20 px-4 relative">
