@@ -8,6 +8,9 @@ interface MusicContextType {
   currentSong: string;
   setCurrentSong: (song: string) => void;
   songs: { title: string; file: string }[];
+  currentSongIndex: number;
+  playNext: () => void;
+  playPrevious: () => void;
 }
 
 const songs = [
@@ -20,9 +23,22 @@ const MusicContext = createContext<MusicContextType | undefined>(undefined);
 export function MusicProvider({ children }: { children: React.ReactNode }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSong, setCurrentSong] = useState("Valse");
+  const [currentSongIndex, setCurrentSongIndex] = useState(0);
 
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
+  };
+
+  const playNext = () => {
+    const nextIndex = (currentSongIndex + 1) % songs.length;
+    setCurrentSongIndex(nextIndex);
+    setCurrentSong(songs[nextIndex].title);
+  };
+
+  const playPrevious = () => {
+    const prevIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+    setCurrentSongIndex(prevIndex);
+    setCurrentSong(songs[prevIndex].title);
   };
 
   useEffect(() => {
@@ -39,7 +55,7 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
   }, [currentSong, isPlaying]);
 
   return (
-    <MusicContext.Provider value={{ isPlaying, togglePlay, currentSong, setCurrentSong, songs }}>
+    <MusicContext.Provider value={{ isPlaying, togglePlay, currentSong, setCurrentSong, songs, currentSongIndex, playNext, playPrevious }}>
       {children}
     </MusicContext.Provider>
   );
