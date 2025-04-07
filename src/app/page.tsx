@@ -38,7 +38,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[80vh] flex items-center justify-center overflow-hidden cyber-grid">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--background)]/80"></div>
         <div className="absolute inset-0 grid grid-cols-8 grid-rows-8 opacity-10">
           {Array.from({ length: 64 }).map((_, i) => (
@@ -51,31 +51,33 @@ export default function Home() {
           initial="hidden"
           animate="visible"
         >
-          <motion.div className="glitch-container mb-6" variants={itemVariants}>
-            <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tighter glitch-text retro-title">
-              <span className="text-[var(--foreground)] block">SOFTWARE</span>
-              <span className="text-[var(--retro-gray)] block mt-2">ENGINEER</span>
-            </h1>
-          </motion.div>
-          <motion.p 
-            className="text-lg sm:text-xl md:text-2xl text-[var(--retro-gray)] max-w-2xl mx-auto typewriter"
-            variants={itemVariants}
-          >
-            Crafting digital experiences through code and creativity
-          </motion.p>
-          <motion.div 
-            className="mt-8"
-            variants={itemVariants}
-          >
-            <motion.a
-              href="/projects"
-              className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-[var(--accent)] text-[var(--foreground)] font-bold text-base sm:text-lg brutalism-button"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+          <div className="cyber-square-border p-8 sm:p-12 md:p-16">
+            <motion.div className="glitch-container mb-6 holographic" variants={itemVariants}>
+              <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tighter glitch-text retro-title tech-text">
+                <span className="text-[var(--foreground)] block">AULIA</span>
+                <span className="text-[var(--retro-gray)] block mt-2">RAMADHAN</span>
+              </h1>
+            </motion.div>
+            {/* <motion.p 
+              className="text-lg sm:text-xl md:text-2xl text-[var(--retro-gray)] max-w-2xl mx-auto typewriter"
+              variants={itemVariants}
             >
-              <span className="relative z-10 text-white">VIEW PROJECTS</span>
-            </motion.a>
-          </motion.div>
+              Crafting digital experiences through code and creativity
+            </motion.p> */}
+            <motion.div 
+              className="mt-8"
+              variants={itemVariants}
+            >
+              <motion.a
+                href="/projects"
+                className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-[var(--accent)] text-[var(--foreground)] font-bold text-base sm:text-lg brutalism-button"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="relative z-10 text-white">VIEW PROJECTS</span>
+              </motion.a>
+            </motion.div>
+          </div>
         </motion.div>
       </section>
 
