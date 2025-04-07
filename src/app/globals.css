@@ -1,8 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5f5f5;
+  --foreground: #000000;
+  --accent: #ff3e00;
+  --accent2: #00ff9d;
+  --retro-gray: #333333;
+  --retro-dark: #1a1a1a;
+  --retro-light: #cccccc;
+  --retro-highlight: #ffff00;
+  --retro-bg: #f0f0f0;
+  --retro-bg-alt: #e0e0e0;
 }
 
 @theme inline {
@@ -14,8 +22,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #f5f5f5;
+    --foreground: #000000;
   }
 }
 
@@ -23,4 +31,345 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Parallax Background */
+.parallax-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat;
+  background-size: 100px 100px;
+  opacity: 0.1;
+}
+
+.parallax-grid {
+  background-image: 
+    linear-gradient(var(--retro-gray) 1px, transparent 1px),
+    linear-gradient(90deg, var(--retro-gray) 1px, transparent 1px);
+  background-size: 20px 20px;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.parallax-dots {
+  background-image: radial-gradient(var(--retro-gray) 1px, transparent 1px);
+  background-size: 30px 30px;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.parallax-lines {
+  background-image: 
+    linear-gradient(90deg, var(--retro-gray) 1px, transparent 1px),
+    linear-gradient(var(--retro-gray) 1px, transparent 1px);
+  background-size: 50px 50px;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Glitch Effect */
+.glitch-text {
+  position: relative;
+  animation: glitch 1s linear infinite;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  left: 2px;
+  text-shadow: -2px 0 var(--accent);
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+  left: -2px;
+  text-shadow: -2px 0 var(--accent2);
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% {
+    clip: rect(31px, 9999px, 94px, 0);
+  }
+  4.16666% {
+    clip: rect(91px, 9999px, 43px, 0);
+  }
+  8.33333% {
+    clip: rect(85px, 9999px, 66px, 0);
+  }
+  12.5% {
+    clip: rect(137px, 9999px, 61px, 0);
+  }
+  16.66666% {
+    clip: rect(34px, 9999px, 14px, 0);
+  }
+  20.83333% {
+    clip: rect(133px, 9999px, 62px, 0);
+  }
+  25% {
+    clip: rect(92px, 9999px, 18px, 0);
+  }
+  29.16666% {
+    clip: rect(43px, 9999px, 96px, 0);
+  }
+  33.33333% {
+    clip: rect(82px, 9999px, 31px, 0);
+  }
+  37.5% {
+    clip: rect(91px, 9999px, 94px, 0);
+  }
+  41.66666% {
+    clip: rect(14px, 9999px, 9px, 0);
+  }
+  45.83333% {
+    clip: rect(26px, 9999px, 39px, 0);
+  }
+  50% {
+    clip: rect(67px, 9999px, 73px, 0);
+  }
+  54.16666% {
+    clip: rect(146px, 9999px, 61px, 0);
+  }
+  58.33333% {
+    clip: rect(121px, 9999px, 68px, 0);
+  }
+  62.5% {
+    clip: rect(35px, 9999px, 14px, 0);
+  }
+  66.66666% {
+    clip: rect(133px, 9999px, 50px, 0);
+  }
+  70.83333% {
+    clip: rect(141px, 9999px, 23px, 0);
+  }
+  75% {
+    clip: rect(25px, 9999px, 145px, 0);
+  }
+  79.16666% {
+    clip: rect(63px, 9999px, 27px, 0);
+  }
+  83.33333% {
+    clip: rect(142px, 9999px, 116px, 0);
+  }
+  87.5% {
+    clip: rect(38px, 9999px, 130px, 0);
+  }
+  91.66666% {
+    clip: rect(42px, 9999px, 96px, 0);
+  }
+  95.83333% {
+    clip: rect(24px, 9999px, 145px, 0);
+  }
+  100% {
+    clip: rect(82px, 9999px, 64px, 0);
+  }
+}
+
+@keyframes glitch-anim2 {
+  0% {
+    clip: rect(65px, 9999px, 119px, 0);
+  }
+  4.16666% {
+    clip: rect(133px, 9999px, 40px, 0);
+  }
+  8.33333% {
+    clip: rect(46px, 9999px, 16px, 0);
+  }
+  12.5% {
+    clip: rect(92px, 9999px, 63px, 0);
+  }
+  16.66666% {
+    clip: rect(28px, 9999px, 142px, 0);
+  }
+  20.83333% {
+    clip: rect(16px, 9999px, 132px, 0);
+  }
+  25% {
+    clip: rect(96px, 9999px, 25px, 0);
+  }
+  29.16666% {
+    clip: rect(42px, 9999px, 65px, 0);
+  }
+  33.33333% {
+    clip: rect(115px, 9999px, 146px, 0);
+  }
+  37.5% {
+    clip: rect(134px, 9999px, 33px, 0);
+  }
+  41.66666% {
+    clip: rect(27px, 9999px, 60px, 0);
+  }
+  45.83333% {
+    clip: rect(40px, 9999px, 134px, 0);
+  }
+  50% {
+    clip: rect(66px, 9999px, 107px, 0);
+  }
+  54.16666% {
+    clip: rect(139px, 9999px, 141px, 0);
+  }
+  58.33333% {
+    clip: rect(25px, 9999px, 46px, 0);
+  }
+  62.5% {
+    clip: rect(46px, 9999px, 142px, 0);
+  }
+  66.66666% {
+    clip: rect(54px, 9999px, 35px, 0);
+  }
+  70.83333% {
+    clip: rect(33px, 9999px, 139px, 0);
+  }
+  75% {
+    clip: rect(104px, 9999px, 115px, 0);
+  }
+  79.16666% {
+    clip: rect(127px, 9999px, 54px, 0);
+  }
+  83.33333% {
+    clip: rect(14px, 9999px, 82px, 0);
+  }
+  87.5% {
+    clip: rect(26px, 9999px, 75px, 0);
+  }
+  91.66666% {
+    clip: rect(42px, 9999px, 31px, 0);
+  }
+  95.83333% {
+    clip: rect(130px, 9999px, 71px, 0);
+  }
+  100% {
+    clip: rect(34px, 9999px, 140px, 0);
+  }
+}
+
+/* Typewriter Effect */
+.typewriter {
+  overflow: hidden;
+  border-right: 0.15em solid var(--retro-highlight);
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.15em;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--retro-highlight) }
+}
+
+/* Glitch Container */
+.glitch-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover Effects */
+.hover-glow:hover {
+  text-shadow: 0 0 10px var(--retro-highlight);
+}
+
+/* Pixelated Border */
+.pixel-border {
+  border: 4px solid var(--retro-gray);
+  clip-path: polygon(
+    0 0, 
+    calc(100% - 10px) 0, 
+    100% 10px, 
+    100% 100%, 
+    10px 100%, 
+    0 calc(100% - 10px)
+  );
+}
+
+/* Brutalism Elements */
+.brutalism-box {
+  border: 4px solid var(--foreground);
+  box-shadow: 8px 8px 0 var(--retro-highlight);
+  transform: translate(-4px, -4px);
+  transition: transform 0.2s, box-shadow 0.2s;
+  background-color: var(--retro-bg);
+}
+
+.brutalism-box:hover {
+  transform: translate(0, 0);
+  box-shadow: 0 0 0 var(--retro-highlight);
+}
+
+.brutalism-button {
+  background-color: var(--accent);
+  color: var(--foreground);
+  border: 4px solid var(--foreground);
+  box-shadow: 8px 8px 0 var(--retro-highlight);
+  transform: translate(-4px, -4px);
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+}
+
+.brutalism-button:hover {
+  transform: translate(0, 0);
+  box-shadow: 0 0 0 var(--retro-highlight);
+}
+
+/* Retro Text Styles */
+.retro-text {
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.retro-title {
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: bold;
+  position: relative;
+  display: inline-block;
+}
+
+.retro-title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--retro-highlight);
+}
+
+/* Parallax Scroll Effect */
+.parallax-scroll {
+  transform: translateY(var(--parallax-offset));
+  transition: transform 0.1s ease-out;
 }

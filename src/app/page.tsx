@@ -1,103 +1,137 @@
-import Image from "next/image";
+'use client';
+
+import React from 'react';
+import { motion } from 'framer-motion';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5
+    }
+  }
+};
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--background)]/80"></div>
+        <div className="absolute inset-0 grid grid-cols-8 grid-rows-8 opacity-10">
+          {Array.from({ length: 64 }).map((_, i) => (
+            <div key={i} className="border border-[var(--retro-gray)]/10"></div>
+          ))}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        <motion.div 
+          className="relative z-10 text-center px-4"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          <motion.div className="glitch-container mb-6" variants={itemVariants}>
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tighter glitch-text retro-title">
+              <span className="text-[var(--foreground)] block">SOFTWARE</span>
+              <span className="text-[var(--retro-gray)] block mt-2">ENGINEER</span>
+            </h1>
+          </motion.div>
+          <motion.p 
+            className="text-lg sm:text-xl md:text-2xl text-[var(--retro-gray)] max-w-2xl mx-auto typewriter"
+            variants={itemVariants}
+          >
+            Crafting digital experiences through code and creativity
+          </motion.p>
+          <motion.div 
+            className="mt-8"
+            variants={itemVariants}
+          >
+            <motion.a
+              href="/projects"
+              className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-[var(--accent)] text-[var(--foreground)] font-bold text-base sm:text-lg brutalism-button"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="relative z-10">VIEW PROJECTS</span>
+            </motion.a>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* Featured Section */}
+      <section className="py-12 sm:py-20 px-4 relative">
+        <motion.div 
+          className="max-w-7xl mx-auto relative z-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          <h2 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-center glitch-text retro-title">FEATURED WORK</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
+            {[1, 2, 3].map((item, index) => (
+              <motion.div
+                key={item}
+                className="group relative aspect-video bg-[var(--retro-bg)] overflow-hidden brutalism-box"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                whileHover={{ scale: 1.02 }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)]/80 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 p-4 sm:p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                  <h3 className="text-lg sm:text-xl font-bold mb-2 retro-text">Project {item}</h3>
+                  <p className="text-sm sm:text-base text-[var(--retro-gray)]">Description of the project goes here</p>
+                </div>
+                <div className="absolute top-0 right-0 p-2 bg-[var(--background)]/80 text-xs font-mono opacity-0 group-hover:opacity-100 transition-opacity">
+                  {item === 1 ? 'NEXT.JS' : item === 2 ? 'REACT' : 'NODE.JS'}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Skills Section */}
+      <section className="py-12 sm:py-20 px-4 bg-[var(--retro-bg-alt)] relative">
+        <motion.div 
+          className="max-w-7xl mx-auto relative z-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
         >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-center glitch-text retro-title">TECH STACK</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8">
+            {['React', 'Node.js', 'TypeScript', 'Python'].map((skill, index) => (
+              <motion.div
+                key={skill}
+                className="p-4 sm:p-6 bg-[var(--background)] border-4 border-[var(--foreground)] text-center hover:border-[var(--accent)] transition-all duration-300 transform hover:scale-105 relative group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <h3 className="text-base sm:text-xl font-bold relative z-10 retro-text">{skill}</h3>
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-[var(--accent)] transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
     </div>
   );
 }
