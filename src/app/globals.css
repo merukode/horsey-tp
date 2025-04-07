@@ -4,7 +4,7 @@
   --background: #eaf3f9;
   --foreground: #1b1f2a;
   --accent: #5ab4f0;
-  --accent2: #94d6ff;
+  --accent2: #78c4f2;
   --retro-gray: #7a8fa5;
   --retro-dark: #1b1f2a;
   --retro-light: #dceaf4;
@@ -16,6 +16,9 @@
   --royal-cream: #f0f7fb;
 }
 
+html, body {
+  cursor: default !important;
+}
 
 @theme inline {
   --color-background: var(--background);
@@ -47,6 +50,7 @@ body {
   height: 100%;
   z-index: -1;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .parallax-layer {
@@ -58,6 +62,7 @@ body {
   background-repeat: repeat;
   background-size: 100px 100px;
   opacity: 0.1;
+  pointer-events: none;
 }
 
 .parallax-grid {

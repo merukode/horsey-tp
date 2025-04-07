@@ -8,17 +8,11 @@ interface MusicPlayerCardProps {
   isVisible: boolean;
 }
 
-const playlist = [
-  { title: "Valse", file: "/music/valse.mp3" },
-  // Add more songs here
-];
-
 const MusicPlayerCard: React.FC<MusicPlayerCardProps> = ({ isVisible }) => {
-  const { isPlaying, currentSong, setCurrentSong, togglePlay } = useMusic();
+  const { isPlaying, currentSong, setCurrentSong, togglePlay, songs } = useMusic();
 
-  const handleSongClick = (song: string) => {
-    setCurrentSong(song);
-    // You could add logic here to change the audio source
+  const handleSongClick = (songTitle: string) => {
+    setCurrentSong(songTitle);
   };
 
   return (
@@ -41,18 +35,18 @@ const MusicPlayerCard: React.FC<MusicPlayerCardProps> = ({ isVisible }) => {
             </button>
           </div>
           
-          <p className="text-[var(--foreground)] mb-2">{currentSong || "Valse"}</p>
+          <p className="text-[var(--foreground)] mb-2">{currentSong}</p>
           <div className="flex items-center mb-4">
             <span className={`w-2 h-2 rounded-full mr-2 ${isPlaying ? 'bg-[var(--royal-gold)]' : 'bg-gray-400'}`}></span>
-            <span className="text-sm text-[var(--foreground)]">{isPlaying ? 'Playing' : 'Paused'}</span>
+            <span className="text-sm text-[var(--retro-gray)]">{isPlaying ? 'Playing' : 'Paused'}</span>
           </div>
           
           <div>
             <h4 className="text-[var(--royal-purple)] font-semibold mb-2">Playlist</h4>
             <ul className="space-y-2">
-              {playlist.map((song, index) => (
+              {songs.map((song) => (
                 <li 
-                  key={index}
+                  key={song.title}
                   onClick={() => handleSongClick(song.title)}
                   className={`text-sm p-2 rounded cursor-pointer transition-colors ${
                     currentSong === song.title 

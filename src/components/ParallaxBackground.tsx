@@ -15,7 +15,7 @@ export default function ParallaxBackground() {
   }, []);
 
   return (
-    <div className="parallax-container">
+    <div className="parallax-container pointer-events-none">
       <div 
         className="parallax-layer parallax-grid" 
         style={{ 

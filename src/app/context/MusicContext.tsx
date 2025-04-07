@@ -7,7 +7,13 @@ interface MusicContextType {
   togglePlay: () => void;
   currentSong: string;
   setCurrentSong: (song: string) => void;
+  songs: { title: string; file: string }[];
 }
+
+const songs = [
+  { title: "Valse", file: "/music/valse.mp3" },
+  { title: "Cyberangel", file: "/music/cyberangel.mp3" }
+];
 
 const MusicContext = createContext<MusicContextType | undefined>(undefined);
 
@@ -22,16 +28,18 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const audio = document.getElementById('global-audio-player') as HTMLAudioElement;
     if (audio) {
-      if (isPlaying) {
-        audio.play();
-      } else {
-        audio.pause();
+      const song = songs.find(s => s.title === currentSong);
+      if (song) {
+        audio.src = song.file;
+        if (isPlaying) {
+          audio.play();
+        }
       }
     }
-  }, [isPlaying]);
+  }, [currentSong, isPlaying]);
 
   return (
-    <MusicContext.Provider value={{ isPlaying, togglePlay, currentSong, setCurrentSong }}>
+    <MusicContext.Provider value={{ isPlaying, togglePlay, currentSong, setCurrentSong, songs }}>
       {children}
     </MusicContext.Provider>
   );
