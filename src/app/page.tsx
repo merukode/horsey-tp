@@ -63,7 +63,7 @@ export default function Home() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="relative z-10">VIEW PROJECTS</span>
+              <span className="relative z-10 text-white">VIEW PROJECTS</span>
             </motion.a>
           </motion.div>
         </motion.div>
